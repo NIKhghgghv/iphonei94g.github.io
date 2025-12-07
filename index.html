@@ -1,89 +1,673 @@
+> Николай:
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Alexandrovich - Software Engineer</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
-  <style>
-    body {
-      background: linear-gradient(to bottom, #0f172a, #1e293b);
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .parallax {
-      background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80');
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KH Furniture — Интернет‑магазин мебели</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
-<body class="">
-  <header class="h-screen parallax flex items-center justify-center text-center">
-    <div class="bg-black bg-opacity-60 p-10 rounded-xl">
-      <h1 class="text-5xl font-bold mb-4">Alex Alexandrovich</h1>
-      <p class="text-xl mb-6">Software Engineer | Educator | Developer</p>
-      <a href="#contact" class="px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white rounded-lg text-lg">Contact Me</a>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <a href="#" class="logo">KH Furniture</a>
+        <span class="tagline">Качество. Дизайн. Удобство.</span>
+      </div>
+      <nav class="nav">
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О компании</a>
+        <a href="#delivery">Доставка</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="header__actions">
+        <div class="search">
+          <input type="text" id="searchInput" placeholder="Поиск по товарам..." />
+          <button id="searchBtn" aria-label="Найти">🔍</button>
+        </div>
+        <button class="btn btn--outline" id="loginBtn">Войти</button>
+        <button class="cart-btn" id="cartToggle" aria-label="Открыть корзину">
+          🛒 <span id="cartCount">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <section class="py-20 px-6 text-center bg-gray-900">
-    <h2 class="text-4xl font-bold mb-6">Who Am I?</h2>
-    <p class="max-w-2xl mx-auto text-gray-300 text-lg">
-      I'm a 30-year-old software engineer with a passion for building modern, scalable web applications and teaching others to do the same. Whether you're looking for expert development or want to level up your coding skills, you're in the right place.
-    </p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1>Современная мебель для дома и офиса</h1>
+        <p>Контрастный дизайн, прочные материалы и быстрая доставка по всей стране.</p>
+        <a href="#catalog" class="btn btn--accent">Смотреть каталог</a>
+      </div>
+      <div class="hero__image" aria-hidden="true"></div>
+    </div>
   </section>
 
-  <section class="py-20 bg-gradient-to-br from-indigo-600 to-blue-500 text-white">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-8">My Courses</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white bg-opacity-10 rounded-xl p-6 shadow-lg">
-          <h3 class="text-xl font-semibold mb-2">Frontend Mastery</h3>
-          <p class="text-sm">Learn modern frontend frameworks like React, Tailwind, and more.</p>
+  <!-- Filters -->
+  <section class="filters" id="catalog">
+    <div class="container filters__inner">
+      <div class="filters__row">
+        <div class="filters__group">
+          <label for="categorySelect">Категория</label>
+          <select id="categorySelect">
+            <option value="all">Все</option>
+            <option value="sofas">Диваны</option>
+            <option value="chairs">Кресла</option>
+            <option value="tables">Столы</option>
+            <option value="storage">Шкафы</option>
+          </select>
         </div>
-        <div class="bg-white bg-opacity-10 rounded-xl p-6 shadow-lg">
-          <h3 class="text-xl font-semibold mb-2">Backend Wizardry</h3>
-          <p class="text-sm">Master Node.js, databases, APIs, and scalable backend systems.</p>
+        <div class="filters__group">
+          <label for="priceRange">Макс. цена: <span id="priceValue">100000</span> ₽</label>
+          <input type="range" id="priceRange" min="1000" max="100000" step="1000" value="100000" />
         </div>
-        <div class="bg-white bg-opacity-10 rounded-xl p-6 shadow-lg">
-          <h3 class="text-xl font-semibold mb-2">Full Stack Hero</h3>
-          <p class="text-sm">Combine frontend and backend skills to build full-fledged applications.</p>
+        <div class="filters__group">
+          <label for="sortSelect">Сортировка</label>
+          <select id="sortSelect">
+            <option value="popular">По популярности</option>
+            <option value="priceAsc">Цена: низкая → высокая</option>
+            <option value="priceDesc">Цена: высокая → низкая</option>
+            <option value="nameAsc">Название: A → Я</option>
+          </select>
         </div>
+        <button class="btn btn--outline" id="resetFilters">Сбросить</button>
       </div>
     </div>
   </section>
 
-  <section class="py-20 px-6 bg-gray-800 text-center">
-    <h2 class="text-4xl font-bold text-white mb-8">Support My Work</h2>
-    <div class="space-x-4">
-      <button onclick="pay(5)" class="px-6 py-3 bg-green-500 hover:bg-green-700 text-white rounded-lg">Pay $5</button>
-      <button onclick="pay(10)" class="px-6 py-3 bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg">Pay $10</button>
-      <button onclick="pay(100)" class="px-6 py-3 bg-red-500 hover:bg-red-700 text-white rounded-lg">Pay $100</button>
+  <!-- Products -->
+  <section class="products">
+    <div class="container">
+      <div class="grid" id="productGrid">
+        <!-- Cards injected by JS -->
+      </div>
     </div>
-    <script>
-      function pay(amount) {
-        alert(`Redirecting to payment for $${amount}`);
-        // Replace below with your payment provider integration
-        window.open(`mailto:alex@example.com?subject=Support Payment&body=I want to support you with $${amount}`);
-      }
-    </script>
   </section>
 
-  <section id="contact" class="py-20 bg-gray-900 text-center text-white">
-    <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
-    <p class="mb-6">Email me directly for freelance work, collaborations, or course inquiries.</p>
-    <a href="mailto:alex@example.com" class="px-6 py-3 bg-blue-600 hover:bg-blue-800 rounded-lg text-lg">Email Me</a>
+  <!-- Benefits -->
+  <section class="benefits" id="about">
+    <div class="container benefits__grid">
+      <div class="benefit">
+        <div class="benefit__icon">🚚</div>
+        <h3>Доставка за 1–5 дней</h3>
+        <p>Надёжная логистика и аккуратная сборка на месте.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit__icon">🛡️</div>
+        <h3>Гарантия 24 месяца</h3>
+        <p>Мы используем проверенные материалы и фурнитуру.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit__icon">🎨</div>
+        <h3>Индивидуальные решения</h3>
+        <p>Подбор ткани, цвета и размеров под ваш интерьер.</p>
+      </div>
+    </div>
   </section>
 
-  <footer class="py-6 bg-gray-950 text-center text-gray-500 text-sm">
-    &copy; 2025 Alex Alexandrovich. All rights reserved.
+  <!-- Info blocks -->
+  <section class="info" id="delivery">
+    <div class="container">
+      <h2>Доставка и оплата</h2>
+      <ul class="info__list">
+        <li><strong>Способы оплаты:</strong> наличные, банковская карта, безналичный расчёт.</li>
+
+> Николай:
+<li><strong>Стоимость доставки:</strong> рассчитывается автоматически при оформлении заказа.</li>
+        <li><strong>Сборка:</strong> по запросу, цена зависит от категории товара.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="info" id="contacts">
+    <div class="container">
+      <h2>Контакты</h2>
+      <ul class="info__list">
+        <li><strong>Телефон:</strong> +375 (29) 000‑00‑00</li>
+        <li><strong>Email:</strong> hello@khfurniture.by</li>
+        <li><strong>Адрес:</strong> Минская область, Боровляны</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Cart drawer -->
+  <aside class="cart" id="cartDrawer" aria-label="Корзина" aria-hidden="true">
+    <div class="cart__header">
+      <h3>Корзина</h3>
+      <button class="cart__close" id="cartClose">✕</button>
+    </div>
+    <div class="cart__items" id="cartItems">
+      <!-- Items injected by JS -->
+    </div>
+    <div class="cart__footer">
+      <div class="cart__total">
+        <span>Итого:</span>
+        <strong id="cartTotal">0 ₽</strong>
+      </div>
+      <button class="btn btn--accent" id="checkoutBtn">Оформить заказ</button>
+    </div>
+  </aside>
+  <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__col">
+        <h4>KH Furniture</h4>
+        <p>Стильная мебель с акцентом на комфорт и долговечность.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Быстрые ссылки</h4>
+        <ul>
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#delivery">Доставка</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Соцсети</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">VK</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">
+      © 2025 KH Furniture. Все права защищены.
+    </div>
   </footer>
-</body>
 
+  <script src="script.js"></script>
+</body>
 </html>
+
+
+---
+
+styles.css
+
+:root{
+  --bg: #f2f2f2;            /* нейтральный фон */
+  --surface: #ffffff;
+  --text: #222222;          /* тёмный текст */
+  --muted: #666666;
+  --graphite: #333333;      /* контрастный тёмный */
+  --accent: #ff6a00;        /* яркий акцент (оранжевый) */
+  --accent-2: #00b5ad;      /* альтернативный акцент (бирюзовый) */
+  --border: #e5e5e5;
+  --shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Open Sans','Helvetica Neue',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
+}
+
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.header{
+  position:sticky; top:0; z-index:30;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.header__inner{display:flex;align-items:center;gap:20px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{font-weight:700;font-size:20px;color:var(--graphite);text-decoration:none}
+.tagline{font-size:13px;color:var(--muted)}
+.nav{display:flex;gap:16px;margin-left:auto}
+.nav a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:8px}
+.nav a:hover{background:var(--surface);box-shadow:var(--shadow)}
+
+.header__actions{display:flex;align-items:center;gap:10px}
+.search{display:flex;align-items:center;border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:4px}
+.search input{border:none;outline:none;padding:8px 10px;width:200px;background:transparent;color:var(--text)}
+.search button{border:none;background:transparent;cursor:pointer;padding:8px;border-left:1px solid var(--border)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;padding:10px 16px;border:none;border-radius:12px;
+  cursor:pointer;font-weight:600
+}
+.btn--accent{background:var(--accent);color:#fff}
+.
+
+> Николай:
+btn--accent:hover{filter:brightness(0.95)}
+.btn--outline{background:transparent;color:var(--graphite);border:1px solid var(--graphite)}
+.btn--outline:hover{background:var(--graphite);color:#fff}
+
+.cart-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;border:1px solid var(--graphite);border-radius:12px;
+  background:transparent;color:var(--graphite);cursor:pointer
+}
+.cart-btn:hover{background:var(--graphite);color:#fff}
+.cart-btn span{background:var(--accent);color:#fff;border-radius:999px;padding:2px 8px;font-size:12px}
+
+/* Hero */
+.hero{padding:40px 0 20px}
+.hero__inner{
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px;
+  align-items:center
+}
+.hero__content h1{font-size:34px;margin:0 0 8px}
+.hero__content p{color:var(--muted);margin:0 0 18px}
+.hero__image{
+  height:260px;border-radius:20px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg, var(--surface), #f7f7f7);
+  box-shadow:var(--shadow);
+}
+.hero__image::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(600px 200px at 90% 10%, rgba(255,106,0,0.15), transparent 40%),
+    radial-gradient(400px 160px at 10% 70%, rgba(0,181,173,0.15), transparent 40%);
+}
+
+/* Filters */
+.filters{padding:10px 0 0}
+.filters__inner{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+.filters__row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end}
+.filters__group{display:flex;flex-direction:column;gap:8px;min-width:200px}
+.filters label{font-size:13px;color:var(--muted)}
+.filters select,.filters input[type="range"]{
+  padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff;color:var(--text)
+}
+
+/* Products */
+.products{padding:20px 0 40px}
+.grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px
+}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column
+}
+.card__image{aspect-ratio:4/3;background:#eee;position:relative}
+.card__image img{width:100%;height:100%;object-fit:cover}
+.card__body{padding:14px;display:flex;flex-direction:column;gap:8px}
+.card__title{font-weight:600}
+.card__meta{display:flex;justify-content:space-between;align-items:center}
+.price{font-weight:700;color:var(--graphite)}
+.color-dot{width:16px;height:16px;border-radius:999px;border:1px solid #ccc}
+.card__actions{display:flex;gap:8px;margin-top:8px}
+.card:hover{transform:translateY(-2px);transition:transform .2s ease}
+
+/* Benefits */
+.benefits{padding:10px 0 20px}
+.benefits__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.benefit{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.benefit__icon{font-size:24px}
+
+/* Info */
+.info{padding:10px 0}
+.info h2{margin:0 0 10px}
+.info__list{display:grid;gap:6px;padding-left:18px}
+
+/* Cart drawer */
+.cart{
+  position:fixed; top:0; right:-420px; width:420px; max-width:100%;
+  height:100%; background:var(--surface); box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  transition:right .25s ease; z-index:50; display:flex; flex-direction:column;
+  border-left:1px solid var(--border)
+}
+.cart--open{right:0}
+.cart__header{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid var(--border)}
+.cart__items{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.cart__item{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;border:1px solid var(--border);border-radius:12px;padding:8px}
+.cart__item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+.cart__footer{border-top:1px solid var(--border);padding:14px;display:flex;justify-content:space-between;align-items:center}
+.cart__close{border:none;background:transparent;font-size:18px;cursor:pointer}
+.cart-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,0.25); opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:40
+}
+.
+
+> Николай:
+cart-backdrop--show{opacity:1; pointer-events:auto}
+
+/* Footer */
+.footer{margin-top:20px;background:#fff;border-top:1px solid var(--border)}
+.footer__inner{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:16px}
+.footer__inner h4{margin:0 0 6px}
+.footer__bar{border-top:1px solid var(--border);padding:10px;text-align:center;color:var(--muted)}
+
+/* Responsive */
+@media (max-width:1024px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .hero__inner{grid-template-columns:1fr}
+  .hero__image{height:200px}
+}
+@media (max-width:720px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .nav{display:none}
+}
+@media (max-width:480px){
+  .grid{grid-template-columns:1fr}
+  .header__inner{flex-wrap:wrap}
+  .search input{width:140px}
+}
+
+
+---
+
+script.js
+
+// Sample catalog
+const products = [
+  {
+    id: "SF-101",
+    name: "Диван Milano",
+    price: 89000,
+    category: "sofas",
+    color: "#6b5b95",
+    image: "https://images.unsplash.com/photo-1582582429416-d2f620a5dc48?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: "CH-204",
+    name: "Кресло Oslo",
+    price: 42000,
+    category: "chairs",
+    color: "#b56576",
+    image: "https://images.unsplash.com/photo-1501045661006-fcebe0257c3c?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: "TB-331",
+    name: "Стол Loft 120",
+    price: 36000,
+    category: "tables",
+    color: "#355c7d",
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: "ST-412",
+    name: "Шкаф Classic 2D",
+    price: 54000,
+    category: "storage",
+    color: "#4b4e6d",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: "SF-115",
+    name: "Диван Torino",
+    price: 72000,
+    category: "sofas",
+    color: "#2a9d8f",
+    image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: "CH-260",
+    name: "Кресло Cube",
+    price: 28000,
+    category: "chairs",
+    color: "#f4a261",
+    image: "https://images.unsplash.com/photo-1519710884063-6ca43593e3b3?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: "TB-390",
+    name: "Стол Edge 160",
+    price: 64000,
+    category: "tables",
+    color: "#1d3557",
+    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    id: "ST-500",
+    name: "Комод Nordic",
+    price: 31000,
+    category: "storage",
+    color: "#457b9d",
+    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+  }
+];
+
+const state = {
+  query: "",
+  category: "all",
+  maxPrice: 100000,
+  sort: "popular",
+  cart: []
+};
+
+const els = {
+  grid: document.getElementById("productGrid"),
+  searchInput: document.getElementById("searchInput"),
+  searchBtn: document.getElementById("searchBtn"),
+  categorySelect: document.getElementById("categorySelect"),
+  priceRange: document.getElementById("priceRange"),
+  priceValue: document.getElementById("priceValue"),
+  sortSelect: document.getElementById("sortSelect"),
+  resetFilters: document.getElementById("resetFilters"),
+  cartToggle: document.getElementById("cartToggle"),
+  cartDrawer: document.getElementById("cartDrawer"),
+  cartBackdrop: document.getElementById("cartBackdrop"),
+  cartClose: document.getElementById("cartClose"),
+  cartItems: document.getElementById("cartItems"),
+  cartCount: document.getElementById("cartCount"),
+  cartTotal: document.getElementById("cartTotal"),
+  checkoutBtn: document.getElementById("checkoutBtn")
+};
+
+// Render products
+function renderProducts(list){
+  els.grid.innerHTML = "";
+  if(list.length === 0){
+    els.grid.innerHTML = `<div class="card" style="grid-column: 1/-1; padding:20px">
+      Нет товаров по выбранным параметрам. Измените фильтры.
+    </div>`;
+    return;
+  }
+  list.forEach(p => {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="card__image">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+      </div>
+
+> Николай:
+<div class="card__body">
+        <div class="card__title">${p.name}</div>
+        <div class="card__meta">
+          <div class="price">${formatPrice(p.price)}</div>
+          <div class="color-dot" style="background:${p.color}"></div>
+        </div>
+        <div class="card__actions">
+          <button class="btn btn--outline" data-id="${p.id}" data-action="details">Подробнее</button>
+          <button class="btn btn--accent" data-id="${p.id}" data-action="add">В корзину</button>
+        </div>
+      </div>
+    `;
+    els.grid.appendChild(card);
+  });
+}
+
+// Filters logic
+function applyFilters(){
+  let list = [...products];
+
+  // Search
+  const q = state.query.trim().toLowerCase();
+  if(q) list = list.filter(p => p.name.toLowerCase().includes(q));
+
+  // Category
+  if(state.category !== "all"){
+    list = list.filter(p => p.category === state.category);
+  }
+
+  // Price
+  list = list.filter(p => p.price <= state.maxPrice);
+
+  // Sort
+  switch(state.sort){
+    case "priceAsc": list.sort((a,b)=>a.price-b.price); break;
+    case "priceDesc": list.sort((a,b)=>b.price-a.price); break;
+    case "nameAsc": list.sort((a,b)=>a.name.localeCompare(b.name,'ru')); break;
+    default: // popular (as-is)
+      break;
+  }
+
+  renderProducts(list);
+}
+
+// Cart logic
+function addToCart(id){
+  const product = products.find(p => p.id === id);
+  if(!product) return;
+  const existing = state.cart.find(item => item.id === id);
+  if(existing){ existing.qty += 1; }
+  else { state.cart.push({ id: product.id, name: product.name, price: product.price, image: product.image, qty: 1 }); }
+  updateCartUI();
+}
+
+function removeFromCart(id){
+  state.cart = state.cart.filter(item => item.id !== id);
+  updateCartUI();
+}
+
+function changeQty(id, delta){
+  const item = state.cart.find(i => i.id === id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty <= 0){ removeFromCart(id); }
+  updateCartUI();
+}
+
+function updateCartUI(){
+  els.cartItems.innerHTML = "";
+  if(state.cart.length === 0){
+    els.cartItems.innerHTML = <p>Корзина пуста.</p>;
+  } else {
+    state.cart.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "cart__item";
+      row.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div>
+          <div style="font-weight:600">${item.name}</div>
+          <div style="color:#666">${formatPrice(item.price)}</div>
+          <div style="margin-top:6px; display:flex; gap:8px; align-items:center">
+            <button class="btn btn--outline" data-id="${item.id}" data-action="dec">−</button>
+            <span>${item.qty}</span>
+            <button class="btn btn--outline" data-id="${item.id}" data-action="inc">+</button>
+            <button class="btn btn--accent" data-id="${item.id}" data-action="remove">Удалить</button>
+          </div>
+        </div>
+        <div style="font-weight:700">${formatPrice(item.price * item.qty)}</div>
+      `;
+      els.cartItems.appendChild(row);
+    });
+  }
+  const total = state.cart.reduce((sum,i)=>sum+i.price*i.qty,0);
+  els.cartTotal.textContent = formatPrice(total);
+  els.cartCount.textContent = state.cart.reduce((sum,i)=>sum+i.qty,0);
+}
+
+function formatPrice(n){ return ${n.toLocaleString("ru-RU")} ₽; }
+
+// Cart drawer
+function openCart(){
+  els.cartDrawer.classList.add("cart--open");
+  els.cartBackdrop.classList.add("cart-backdrop--show");
+  els.cartDrawer.setAttribute("aria-hidden","false");
+}
+function closeCart(){
+  els.cartDrawer.classList.remove("cart--open");
+  els.cartBackdrop.classList.remove("cart-backdrop--show");
+  els.cartDrawer.setAttribute("aria-hidden","true");
+}
+
+// Events
+document.addEventListener("click",(e)=>{
+  const btn = e.target.closest("button");
+  if(!btn) return;
+
+  // Product actions
+  const id = btn.dataset.id;
+  const action = btn.dataset.action;
+
+  if(action === "add"){ addToCart(id); }
+  if(action === "details"){ alert("Страница товара в разработке. Добавим позже."); }
+
+  // Cart actions
+  if(action === "inc"){ changeQty(id, +1); }
+  if(action === "dec"){ changeQty(id, -1); }
+  if(action === "remove"){ removeFromCart(id); }
+
+> Николай:
+// Header actions
+  if(btn.id === "cartToggle"){ openCart(); }
+  if(btn.id === "cartClose"){ closeCart(); }
+  if(btn.id === "checkoutBtn"){
+    if(state.cart.length === 0){ alert("Корзина пуста"); return; }
+    alert("Спасибо! Оформление заказа будет добавлено (форма и онлайн‑оплата).");
+  }
+});
+
+// Backdrop click to close cart
+els.cartBackdrop.addEventListener("click", closeCart);
+
+// Search
+els.searchBtn.addEventListener("click", ()=>{
+  state.query = els.searchInput.value;
+  applyFilters();
+});
+els.searchInput.addEventListener("keydown", (e)=>{
+  if(e.key === "Enter"){
+    state.query = els.searchInput.value;
+    applyFilters();
+  }
+});
+
+// Filters
+els.categorySelect.addEventListener("change", (e)=>{
+  state.category = e.target.value;
+  applyFilters();
+});
+els.priceRange.addEventListener("input",(e)=>{
+  state.maxPrice = Number(e.target.value);
+  els.priceValue.textContent = e.target.value;
+  applyFilters();
+});
+els.sortSelect.addEventListener("change",(e)=>{
+  state.sort = e.target.value;
+  applyFilters();
+});
+document.getElementById("resetFilters").addEventListener("click", ()=>{
+  state.query = "";
+  state.category = "all";
+  state.maxPrice = 100000;
+  state.sort = "popular";
+  els.searchInput.value = "";
+  els.categorySelect.value = "all";
+  els.priceRange.value = 100000;
+  els.priceValue.textContent = "100000";
+  els.sortSelect.value = "popular";
+  applyFilters();
+});
+
+// Init
+applyFilters();
+updateCartUI();
+
+
+---
+
+Next steps
+
+• Branding: Replace logo text, update accent color to match your identity (use –accent or –accent-2).
+• Images: Swap Unsplash URLs for your product photos.
+• Checkout: Connect form and payment (e.g., Stripe, YooKassa) or send order via email/Telegram.
+• SEO: Update title, meta description, and add Open Graph tags.
+• Deploy: Upload the three files to any static hosting (Netlify, Vercel, GitHub Pages) or place them on your server.
